@@ -5,7 +5,6 @@ void main() {
   runApp(const BluerouteAIApp());
 }
 
-
 class BluerouteAIApp extends StatelessWidget {
   const BluerouteAIApp({super.key});
 
@@ -180,6 +179,20 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                             value: isVoiceEnabled,
                             activeColor:
                                 Theme.of(context).colorScheme.secondary,
+                            thumbColor: WidgetStatePropertyAll<Color>(
+                              Theme.of(context).cardColor,
+                            ),
+                            thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
+                              (Set<WidgetState> states) {
+                                if (isVoiceEnabled) {
+                                  return const Icon(Icons.volume_up,
+                                      color: Colors.white);
+                                } else {
+                                  return const Icon(Icons.volume_off,
+                                      color: Colors.grey);
+                                }
+                              },
+                            ),
                             onChanged: (value) {
                               setState(() {
                                 isVoiceEnabled = value;
@@ -189,23 +202,27 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                         ],
                       ),
                       const SizedBox(height: 35),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF1A2A52),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 15),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 15),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => NewPage()),
-                          );
-                        },
-                        child: const Text(
-                          "Start",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NewPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Start",
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
                         ),
                       ),
                     ],
