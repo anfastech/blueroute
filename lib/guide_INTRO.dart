@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'guide_FRST.dart';
+import 'TextToSpeech.dart';
 
 class INTROpage extends StatelessWidget {
+  final bool isVoiceEnabled;
+
+  INTROpage({required this.isVoiceEnabled});
+
   @override
   Widget build(BuildContext context) {
+    if (isVoiceEnabled) {
+      TextToSpeech.speak("Quick tips, step 1, Check for breathing, step 2, Call for help immediately, step 3, Keep calm and assess the situation");
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF1E2A47), // Dark blue background
       body: SafeArea(
@@ -39,6 +48,7 @@ class INTROpage extends StatelessWidget {
               ),
 
               SizedBox(height: 20),
+              
 
               // Quick Tips Section
               Container(
@@ -86,7 +96,7 @@ class INTROpage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => FRSTsteps()),
+                    MaterialPageRoute(builder: (context) => FRSTsteps(isVoiceEnabled: isVoiceEnabled)),
                   );
                 },
                 child: Text(

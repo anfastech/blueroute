@@ -2,8 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'guide_CPR.dart';
 import 'main.dart';
+import 'TextToSpeech.dart';
 
 class FRSTsteps extends StatefulWidget {
+  final bool isVoiceEnabled;
+
+  FRSTsteps({required this.isVoiceEnabled});
+
   @override
   _FRSTstepsState createState() => _FRSTstepsState();
 }
@@ -14,42 +19,49 @@ class _FRSTstepsState extends State<FRSTsteps> {
   Timer? timer;
 
   final List<Map<String, String>> steps = [
-  {
-    'title': 'Step 01 (Triaging)',
-    'image': 'images/FRST/1.png',
-    'detail': 'Assess the surroundings for any potential danger. Ensure your safety before approaching the person in need. If the scene is unsafe, call for professional help immediately.',
-  },
-  {
-    'title': 'Step 02 (Check Response)',
-    'image': 'images/FRST/2.png',
-    'detail': 'Gently tap the person on the shoulder and ask loudly, "Are you okay?" If there is no response, proceed to the next step.',
-  },
-  {
-    'title': 'Step 03 (Call for Help)',
-    'image': 'images/FRST/3.png',
-    'detail': 'If the person is unresponsive, immediately call emergency services or ask someone nearby to do so. Provide clear information about the situation and location.',
-  },
-  {
-    'title': 'Step 04 (Check Breathing)',
-    'image': 'images/FRST/4.png',
-    'detail': 'Look for chest movements, listen for breathing sounds, and feel for airflow near the nose and mouth. Take at least 10 seconds to assess breathing.',
-  },
-  {
-    'title': 'Step 05 (Start CPR)',
-    'image': 'images/FRST/5.png',
-    'detail': 'If the person is not breathing, start CPR immediately. Place your hands in the center of the chest and push hard and fast at a rate of 100-120 compressions per minute.',
-  },
-  {
-    'title': 'Step 06 (Use AED)',
-    'image': 'images/FRST/6.png',
-    'detail': 'If an Automated External Defibrillator (AED) is available, turn it on and follow the voice instructions. Ensure no one is touching the person while delivering a shock.',
-  },
-  {
-    'title': 'Step 07 (Are They Breathing?)',
-    'image': 'images/FRST/7.png',
-    'detail': 'Check if the person is breathing again. If yes, place them in a recovery position and monitor their condition. If no, continue CPR until professional help arrives.',
-  },
-];
+    {
+      'title': 'Step 01 (Triaging)',
+      'image': 'images/FRST/1.png',
+      'detail':
+          'Assess the surroundings for any potential danger. Ensure your safety before approaching the person in need. If the scene is unsafe, call for professional help immediately.',
+    },
+    {
+      'title': 'Step 02 (Check Response)',
+      'image': 'images/FRST/2.png',
+      'detail':
+          'Gently tap the person on the shoulder and ask loudly, "Are you okay?" If there is no response, proceed to the next step.',
+    },
+    {
+      'title': 'Step 03 (Call for Help)',
+      'image': 'images/FRST/3.png',
+      'detail':
+          'If the person is unresponsive, immediately call emergency services or ask someone nearby to do so. Provide clear information about the situation and location.',
+    },
+    {
+      'title': 'Step 04 (Check Breathing)',
+      'image': 'images/FRST/4.png',
+      'detail':
+          'Look for chest movements, listen for breathing sounds, and feel for airflow near the nose and mouth. Take at least 10 seconds to assess breathing.',
+    },
+    {
+      'title': 'Step 05 (Start CPR)',
+      'image': 'images/FRST/5.png',
+      'detail':
+          'If the person is not breathing, start CPR immediately. Place your hands in the center of the chest and push hard and fast at a rate of 100-120 compressions per minute.',
+    },
+    {
+      'title': 'Step 06 (Use AED)',
+      'image': 'images/FRST/6.png',
+      'detail':
+          'If an Automated External Defibrillator (AED) is available, turn it on and follow the voice instructions. Ensure no one is touching the person while delivering a shock.',
+    },
+    {
+      'title': 'Step 07 (Are They Breathing?)',
+      'image': 'images/FRST/7.png',
+      'detail':
+          'Check if the person is breathing again. If yes, place them in a recovery position and monitor their condition. If no, continue CPR until professional help arrives.',
+    },
+  ];
 
   @override
   void initState() {
@@ -150,32 +162,34 @@ class _FRSTstepsState extends State<FRSTsteps> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                                ElevatedButton(
+                              ElevatedButton(
                                 onPressed: () {
                                   showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                    title: Text('Manage bleeding'),
-                                    content: Text('Follow the steps to manage bleeding.'),
-                                    actions: [
-                                      TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Home()),);
-                                      },
-                                      child: Text('Home'),
-                                      ),
-                                    ],
-                                    );
-                                  },
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Manage bleeding'),
+                                        content: Text(
+                                            'Follow the steps to manage bleeding.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Home()),
+                                              );
+                                            },
+                                            child: Text('Home'),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                 },
                                 child: Text('Yes'),
-                                ),
+                              ),
                               SizedBox(width: 20),
                               ElevatedButton(
                                 onPressed: () {
@@ -183,8 +197,8 @@ class _FRSTstepsState extends State<FRSTsteps> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            CPRsteps()),
+                                        builder: (context) => CPRsteps(
+                                            isVoiceEnabled: widget.isVoiceEnabled)),
                                   );
                                 },
                                 child: Text('No'),

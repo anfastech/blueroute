@@ -2,6 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class CPRsteps extends StatefulWidget {
+  final bool isVoiceEnabled;
+
+  CPRsteps({required this.isVoiceEnabled});
+
   @override
   _CPRstepsState createState() => _CPRstepsState();
 }

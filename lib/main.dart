@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'guide_INTRO.dart';
+import 'TextToSpeech.dart';
 
 void main() {
   runApp(const Home());
@@ -216,7 +217,7 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => INTROpage()),
+                                  builder: (context) => INTROpage(isVoiceEnabled: isVoiceEnabled)),
                             );
                           },
                           child: const Text(
