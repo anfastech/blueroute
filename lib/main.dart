@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'new_page.dart';
+import 'guide_page.dart';
 
 void main() {
   runApp(const BluerouteAIApp());
@@ -216,7 +216,7 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => NewPage()),
+                                  builder: (context) => GuidePage()),
                             );
                           },
                           child: const Text(
