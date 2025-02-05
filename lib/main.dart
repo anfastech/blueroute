@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'guide_page.dart';
+import 'guide_INTRO.dart';
 
 void main() {
-  runApp(const BluerouteAIApp());
+  runApp(const Home());
 }
 
-class BluerouteAIApp extends StatelessWidget {
-  const BluerouteAIApp({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -216,7 +216,7 @@ class _FirstAidScreenState extends State<FirstAidScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => GuidePage()),
+                                  builder: (context) => INTROpage()),
                             );
                           },
                           child: const Text(

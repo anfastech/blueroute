@@ -37,6 +37,7 @@ dependencies:
   cloud_firestore: ^5.6.2
   google_maps_flutter: ^2.5.0
   permission_handler: ^11.3.1
+  flutter_tts: ^4.2.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -68,6 +69,19 @@ flutter:
   assets:
     # - images/a_dot_burr.jpeg
     - images/logo_blueroute.png
+    - images/help.png
+    - images/FRST/1.png
+    - images/FRST/2.png
+    - images/FRST/3.png
+    - images/FRST/4.png
+    - images/FRST/5.png
+    - images/FRST/6.png
+    - images/CPR/1.png
+    - images/CPR/2.png
+    - images/CPR/3.png
+    - images/CPR/4.png
+    - images/CPR/5.png
+    - images/CPR/6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
